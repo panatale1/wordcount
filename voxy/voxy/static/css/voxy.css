@@ -1,0 +1,22 @@
+body {
+    margin-left: 10px;
+    font-family: Arial;
+}
+
+.errorlist {
+    margin-left: 10px;
+    background-color: #f44336;
+    padding: 5px;
+    color: white;
+}
+
+.success {
+    margin-left: 10px;
+    padding: 5px;
+    color: white;
+    background-color: #5cb85c;
+}
+
+.panel-default .panel-body {
+    margin-right: 50px;
+}

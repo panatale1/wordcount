@@ -1,0 +1,50 @@
+{% load static %}
+{% load staticfiles %}
+<HTML>
+    <head>
+        <title>Word Count application</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="{% static 'css/voxy.css' %}">
+    </head>
+    <body>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="panel panel-primary">
+                    <div class="panel panel-heading">
+                        <p>Voxy Word Count Application</p>
+                    </div>
+                    <div class="panel panel-body">
+                        <div class="row">
+                            {% if form.errors.text_block %}
+                                {% for error in form.errors.text_block %}
+                                    <div class="errorlist col-sm-6">
+                                        <p><i class="fa fa-exclamation-circle" aria-hidden="true"></i> {{ error }}</p>
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+                            {% if text_block %}
+                                <div class="success col-sm-6">
+                                    <p><i class="fa fa-check-circle" aria-hidden="true"></i> Your submission contained {{ word_count }} word{{ word_count|pluralize }}.</p>
+                                        {% if extra_tokens %}
+                                            <p>Your submission contained {{ extra_tokens }} extra group{{ extra_tokens|pluralize }} of symbols that were not counted.</p>
+                                        {% endif %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <form id="enter_text" method="POST" novalidate>
+                                    {% csrf_token %}
+                                    <p>Enter your text:</p>
+                                    {{ form.text_block }}
+                                    <p><button form="enter_text" type="submit" class="btn btn-primary">Submit Text</button></p>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</HTML>
