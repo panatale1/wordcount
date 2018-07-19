@@ -4,6 +4,7 @@ from string import punctuation
 from django.views.generic import FormView
 
 from .forms import WordCountForm
+from .utils import word_count
 
 
 class WordCountView(FormView):
@@ -17,13 +18,6 @@ class WordCountView(FormView):
         # We get total number of character groups, discard non-alphanumeric characters,
         # and get total word count.
         text_block = form.cleaned_data['text_block']
-        total_tokens = len(text_block.split())
-        for piece in punctuation:
-            text_block = text_block.replace(piece, '')
-        word_count = len(text_block.split())
-        kwargs = {
-            'text_block': form.cleaned_data['text_block'],
-            'word_count': word_count,
-            'extra_tokens': total_tokens - word_count,
-        }
+        import pdb; pdb.set_trace()
+        kwargs = word_count(text_block)
         return self.render_to_response(self.get_context_data(**kwargs))

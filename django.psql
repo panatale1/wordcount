@@ -4,3 +4,6 @@ ALTER ROLE python SET client_encoding TO 'utf8';
 ALTER ROLE python SET default_transaction_isolation TO 'read committed';
 ALTER ROLE python SET timezone TO 'UTC';
 GRANT ALL PRIVILEGES ON DATABASE voxy TO python;
+
+CREATE DATABASE test_voxy;
+GRANT ALL PRIVILEGES ON DATABASE test_voxy TO python;
